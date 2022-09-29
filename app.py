@@ -65,5 +65,21 @@ def postStudentInfo():
     }
     return allData
 
+@app.route("/getImage")
+def getImage():
+    fig = Figure()
+    ax = fig.subplots()
+    x = [i for i in range(1,100,1)]
+    y = list(map(lambda current: current ** 3, x))
+    ax.plot(x,y, color = "red", label = "heat Values")
+    ax.set_title("Hello world")
+    ax.set_xlabel("X Values")
+    ax.set_ylabel("Y Values")
+    fig.legend()
+    buf = BytesIO()
+    fig.savefig(buf, format="png")
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return f"<img src='data:image/png;base64,{data}'/>"
+
 if (__name__ == "__main__"):
     app.run(debug = True, port = 5000)
