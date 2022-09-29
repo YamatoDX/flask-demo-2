@@ -81,5 +81,24 @@ def getImage():
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return f"<img src='data:image/png;base64,{data}'/>"
 
+@app.route("/getImageByData", methods = ["POST"])
+def getImageByData():
+    requestBody = request.get_json()
+    if("x_values" not in list(requestBody.keys())):
+        return "x_values has to be provided"
+    x = requestBody["x_values"]
+    y = list(map(lambda each: each ** 3, x))
+    fig = Figure()
+    ax = fig.subplots()
+    ax.plot(x,y, color = "red", label = "heat Values")
+    ax.set_title("Hello world")
+    ax.set_xlabel("X Values")
+    ax.set_ylabel("Y Values")
+    fig.legend()
+    buf = BytesIO()
+    fig.savefig(buf, format="png")
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return f"<img src='data:image/png;base64,{data}'/>"
+
 if (__name__ == "__main__"):
     app.run(debug = True, port = 5000)
