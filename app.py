@@ -100,7 +100,7 @@ def getImageByData():
 
 def graphFunction(functionType, inputValue):
     if(functionType == "linear"):
-        return inputValue
+        return int(inputValue)
     elif(functionType == "square"):
         return int(inputValue) ** 2
     else:
@@ -114,8 +114,8 @@ def getGraph():
     end = requestBody["end"]
     increment = requestBody["increment"]
     inputFunctionType = requestBody["inputFunction"]
-    x = [i for i in range(start, end + 1, increment)]
-    y = list(map(lambda each: graphFunction(inputFunctionType, each), x))
+    x = [i for i in range(int(start), int(end) + 1, int(increment))]
+    y = list(map(lambda each: graphFunction(inputFunctionType, int(each)), x))
     fig = Figure()
     ax = fig.subplots()
     ax.plot(x,y, color = "red", label = "heat Values")
