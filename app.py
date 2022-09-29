@@ -2,7 +2,9 @@ from flask import Flask, request
 import base64
 from io import BytesIO
 from matplotlib.figure import Figure
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 allData = {
     "D03":{
@@ -107,6 +109,7 @@ def graphFunction(functionType, inputValue):
         return int(inputValue) ** 3
 
 @app.route("/getGraph", methods = ["POST"])
+@cross_origin(supports_credentials=True)
 def getGraph():
     requestBody = request.get_json()
     print(f'requestBody is {requestBody}')
