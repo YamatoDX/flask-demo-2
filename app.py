@@ -98,15 +98,23 @@ def getImageByData():
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return f"<img src='data:image/png;base64,{data}'/>"
 
+def graphFunction(functionType, inputValue):
+    if(functionType == "linear"):
+        return inputValue
+    elif(functionType == "square"):
+        return int(inputValue) ** 2
+    else:
+        return int(inputValue) ** 3
+
 @app.route("/getGraph", methods = ["POST"])
 def getGraph():
     requestBody = request.get_json()
     start = requestBody["start"]
     end = requestBody["end"]
     increment = requestBody["increment"]
-    inputFunction = requestBody["inputFunction"]
+    inputFunctionType = requestBody["inputFunction"]
     x = [i for i in range(start, end + 1, increment)]
-    y = list(map(lambda each: inputFunction(each), x))
+    y = list(map(lambda each: graphFunction(inputFunctionType, each), x))
     fig = Figure()
     ax = fig.subplots()
     ax.plot(x,y, color = "red", label = "heat Values")
