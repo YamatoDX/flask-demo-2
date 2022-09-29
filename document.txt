@@ -1,5 +1,0 @@
-This is a students application
-
-1. You can create a student by a ID, POST, /create
-2. Fetch the student details , GET, /getStudentInfo
-3. 
