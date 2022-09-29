@@ -49,6 +49,10 @@ def postStudentInfo():
     name = requestBody["name"]
     roll = requestBody["roll"]
     totalMarks = requestBody["totalMarks"]
+    if(isinstance(name, str) == False or isinstance(roll, str) == False or isinstance(totalMarks, int) == False):
+        return "name, roll has to be string and totalMarks has to be integer value"
+    if(name == "" or roll == "" or totalMarks <= 0):
+        return "name , roll cannot be empty string and totalMarks has to greater than zero"
     allData[roll] = {
         "name": name,
         "roll": roll,
