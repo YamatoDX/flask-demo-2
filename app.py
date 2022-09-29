@@ -109,6 +109,7 @@ def graphFunction(functionType, inputValue):
 @app.route("/getGraph", methods = ["POST"])
 def getGraph():
     requestBody = request.get_json()
+    print(f'requestBody is {requestBody}')
     start = requestBody["start"]
     end = requestBody["end"]
     increment = requestBody["increment"]
