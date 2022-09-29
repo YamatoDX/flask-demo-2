@@ -1,4 +1,9 @@
 from flask import Flask, request
+import base64
+from io import BytesIO
+
+from flask import Flask
+from matplotlib.figure import Figure
 app = Flask(__name__)
 
 allData = {
