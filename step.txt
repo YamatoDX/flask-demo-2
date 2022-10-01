@@ -1,0 +1,5 @@
+> gcloud --version
+> gcloud auth login
+> gcloud config set project my-project
+> gcloud app deploy
+> gcloud app log tails
