@@ -131,7 +131,7 @@ def getGraph():
 
 @app.route("/sampleRoute", methods = ["GET"])
 def sampleRoute():
-    return "This is a sample Text from sampleRoute"
+    return "This is an sample Text from sampleRoute"
 
 
 if (__name__ == "__main__"):
