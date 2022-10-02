@@ -129,5 +129,10 @@ def getGraph():
     return data;
     # return f"<img src='data:image/png;base64,{data}'/>"
 
+@app.route("/sampleRoute", methods = ["GET"])
+def sampleRoute():
+    return "This is a sample Text from sampleRoute"
+
+
 if (__name__ == "__main__"):
     app.run(debug = True, port = 5000)
